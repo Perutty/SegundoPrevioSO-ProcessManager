@@ -5,6 +5,7 @@
 package View;
 
 import Controller.ProcessController;
+import Model.Procesos;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class KillProcess extends javax.swing.JDialog {
         initComponents();
     }
     
-    private void matarProceso(Integer key) throws IOException{
+    private void matarProceso(String key) throws IOException{
         process.killProcess(key);
         this.setVisible(false);
     }
@@ -102,7 +103,7 @@ public class KillProcess extends javax.swing.JDialog {
 
     private void killActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killActionPerformed
         try {
-            matarProceso(Integer.valueOf(process_id.getText()));
+            matarProceso(process_id.getText());
         } catch (IOException ex) {
             Logger.getLogger(KillProcess.class.getName()).log(Level.SEVERE, null, ex);
         }

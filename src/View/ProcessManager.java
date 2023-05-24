@@ -30,8 +30,8 @@ public class ProcessManager extends javax.swing.JFrame {
     
     public void setDatos(DefaultTableModel model){
         String[] datos = new String[model.getColumnCount()];
-        Set<Integer> keys = process.getTablaHash().tablaHash.keySet();
-        for (Integer key : keys) {
+        Set<String> keys = process.getTablaHash().tablaHash.keySet();
+        for (String key : keys) {
             String proceso = process.getTablaHash().tablaHash.get(key).toString();
             String[] p = proceso.split(",");
             datos[0] = p[0];
@@ -41,6 +41,7 @@ public class ProcessManager extends javax.swing.JFrame {
             model.addRow(datos);
         }
         tabla.setModel(model);
+        tabla.setAutoCreateRowSorter(true);
     }
     
     @SuppressWarnings("unchecked")

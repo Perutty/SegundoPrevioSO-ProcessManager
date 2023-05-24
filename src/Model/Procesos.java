@@ -13,11 +13,19 @@ import java.util.Map;
  */
 public class Procesos {
     
-    public Map<Integer, Proceso> tablaHash = new HashMap<>();
+    public Map<String, Proceso> tablaHash = new HashMap<>();
     
     public Procesos(){};
     
-    public Procesos(Map<Integer, Proceso> tablaHash){
+    public Procesos(Map<String, Proceso> tablaHash){
+        this.tablaHash = tablaHash;
+    }
+
+    public Map<String, Proceso> getTablaHash() {
+        return tablaHash;
+    }
+
+    public void setTablaHash(Map<String, Proceso> tablaHash) {
         this.tablaHash = tablaHash;
     }
 }

@@ -18,7 +18,6 @@ public class ProcessController {
     public Procesos procesos = new Procesos();
     
  public void taskList() throws FileNotFoundException, IOException{
-            procesos.tablaHash.clear();
             String comando[]={"cmd.exe","/c", "tasklist", "/v", "/nh","/FO", "csv"};
             Process process=Runtime.getRuntime().exec(comando);
             BufferedReader is = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
@@ -30,26 +29,29 @@ public class ProcessController {
                         proceso.setPid(parts[1].replace("\"",""));
                         proceso.setRam(parts[4].replace("\"",""));
                         proceso.setCpu(parts[7].replace("\"",""));
-                        procesos.tablaHash.put(Integer.valueOf(parts[1].replace("\"","")), proceso);
-                        System.out.println(procesos.tablaHash.get(Integer.valueOf(parts[1].replace("\"",""))).toString());
+                        procesos.tablaHash.put(parts[1], proceso);
+                        System.out.println(procesos.tablaHash.get(parts[1]).toString());
                     }
-                        
-            }
- 
+    }
+    
     public Procesos getTablaHash(){
      return procesos;
     }
     
-    public void killProcess(Integer key) throws IOException{
-        if(procesos.tablaHash.get(key)!=null){
-            String comando2[]={"cmd.exe","/c", "taskkill", "/PID", ""+key,"/F"};
-            Process process=Runtime.getRuntime().exec(comando2);
-            procesos.tablaHash.remove(key);
-            JOptionPane.showMessageDialog(null, "Proceso finalizado!", "Alerta", JOptionPane.WARNING_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null, "Proceso no encontrado!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        System.out.println(key);
-        System.out.println(procesos.tablaHash.get(key).toString());
-        }
+    public void killProcess(String key) throws IOException{
+            if(Integer.parseInt(key) >= 1000){
+                String comando2[]={"cmd.exe","/c", "taskkill", "/PID", ""+key};
+                Process process=Runtime.getRuntime().exec(comando2);
+                BufferedReader is = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
+                String line = is.readLine();
+                if(line == null){
+                        JOptionPane.showMessageDialog(null, "ERROR: no se encontró el PID "+key, "Error", JOptionPane.ERROR_MESSAGE);
+
+                }else{
+                       JOptionPane.showMessageDialog(null, ""+line, "Alerta", JOptionPane.WARNING_MESSAGE);
+                       taskList();
+                }
+            }else
+                JOptionPane.showMessageDialog(null, "El PID que ingresó no es correcto finalizarlo", "Caution", JOptionPane.WARNING_MESSAGE);
+    }
 }
