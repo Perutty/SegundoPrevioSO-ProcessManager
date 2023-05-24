@@ -21,14 +21,14 @@ public class ProcessManager extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void setModelo(DefaultTableModel model){
+    public void setModelo(DefaultTableModel model){
         String[] head = {"Process Name", "PID", "RAM Kb", "CPU (h/m/s)"};
         model.setColumnIdentifiers(head);
         tabla.setModel(model);
         setDatos(model);
     }
     
-    private void setDatos(DefaultTableModel model){
+    public void setDatos(DefaultTableModel model){
         String[] datos = new String[model.getColumnCount()];
         Set<Integer> keys = process.getTablaHash().tablaHash.keySet();
         for (Integer key : keys) {
@@ -197,7 +197,8 @@ public class ProcessManager extends javax.swing.JFrame {
     }//GEN-LAST:event_procesosActionPerformed
 
     private void killerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killerActionPerformed
-
+        KillProcess killProcess = new KillProcess(this, true);
+        killProcess.setVisible(true);
     }//GEN-LAST:event_killerActionPerformed
 
     private void cpuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpuActionPerformed
