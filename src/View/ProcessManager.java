@@ -5,8 +5,6 @@
 package View;
 
 import Controller.ProcessController;
-import Model.Proceso;
-import Model.Procesos;
 import java.io.IOException;
 import java.util.Set;
 import java.util.logging.Level;

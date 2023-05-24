@@ -30,11 +30,6 @@ public class ProcessController {
                         proceso.setRam(parts[4]);
                         proceso.setCpu(parts[7]);
                         procesos.tablaHash.put(cont, proceso);
-                        /*procesos[cont][0] = parts[0];
-                        procesos[cont][1] = parts[1];
-                        procesos[cont][2] = parts[4];
-                        procesos[cont][3] = parts[7];*/
-                        System.out.println(procesos.tablaHash.get(cont).toString());
                         cont++;
                     }
                         
