@@ -49,7 +49,6 @@ public class ProcessController {
 
                 }else{
                        JOptionPane.showMessageDialog(null, ""+line, "Alerta", JOptionPane.WARNING_MESSAGE);
-                       taskList();
                 }
             }else
                 JOptionPane.showMessageDialog(null, "El PID que ingresó no es correcto finalizarlo", "Caution", JOptionPane.WARNING_MESSAGE);
